@@ -40,5 +40,15 @@ void fileError(void)
 
 int read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
+/*handle */
+
+void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
+void fileError(void);
+void openError(char *filename);
+void line_error_code(int *line, char *opcode);
+void malloc_error(void);
+/* runing */
+void run(stack_t **stack, char *str, unsigned int line_cnt);
+
 
 #endif

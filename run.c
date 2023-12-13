@@ -4,57 +4,53 @@
 #include "monty.h"
 
 /**
- * opcode - function in charge of running builtins
- * @stack: stack given by main
- * @str: string to compare
- * @line_cnt: ammount of lines
- *
- * Return: nothing
- */
-void run(stack_t **stack, char *str, unsigned int line_cnt)
-{
-	int i = 0;
-
-	instruction_t op[] = INSTRUCTIONS;
-
-	if (!strcmp(str, "stack"))
-	{
-		global.data_struct = 1;
-		return;
-	}
-	if (!strcmp(str, "queue"))
-	{
-		global.data_struct = 0;
-		return;
-	}
-
-	while (op[i].opcode)
-	{
-		if (strcmp(op[i].opcode, str) == 0)
-		{
-			op[i].f(stack, line_cnt);
-			return; /* if we found a match, run the function */
-		}
-		i++;
-	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_cnt, str);
-	status = EXIT_FAILURE;
-}
-/**
- * freeStack - It frees the stack data structure.
- * @stack: It's the stack data structure.
+ * run - Execute Monty opcodes based on the input string.
+ * @stack: Pointer to the stack data structure.
+ * @str: Opcode string to compare.
+ * @line_cnt: Line number in the Monty script.
  *
  * Return: Nothing.
  */
+ void run(stack_t **stack, char *str, unsigned int line_cnt)
+{
+    int i = 0;
 
+    instruction_t op[] = {
+        {"push", push},
+        {"pall", pall},
+        {"pop", pop},
+        // Add more opcode-function pairs as needed
+        {NULL, NULL} // Terminate the array
+    };
+
+    while (op[i].opcode)
+    {
+        if (strcmp(op[i].opcode, str) == 0)
+        {
+            op[i].f(stack, line_cnt);
+            return;
+        }
+        i++;
+    }
+
+    fprintf(stderr, "L%d: unknown instruction %s\n", line_cnt, str);
+    status = EXIT_FAILURE;
+}
+
+/**
+ * freeStack - Free the memory allocated for a stack linked list.
+ * @stack: Pointer to the stack data structure.
+ *
+ * Return: Nothing.
+ */
 void freeStack(stack_t *stack)
 {
-	stack_t *mirror = stack;
+    stack_t *mirror = stack;
 
-	while (stack)
-	{
-		stack = stack->next;
-		free(mirror);
-		mirror = stack;
-	}
+    while (stack)
+    {
+        stack = stack->next;
+        free(mirror);
+        mirror = stack;
+    }
 }
