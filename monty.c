@@ -11,11 +11,16 @@
   */
 int main(int argc, char **argv)
 {
-	/**
-	  1- check does the number of argc is correct
-	  2- check if the argv[1] is a file name
-	  3- call read_file function
-	  4- free the linked list
-	  **/
+	stack_t *stack = NULL;
+
+	if (argc != 2)
+	{
+		/* monty file error */
+		return (EXIT_FAILURE);
+	}
+	if (read_file(argv[1], &stack) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	/** free linked list */
+		
 	return (EXIT_SUCCESS);
 }

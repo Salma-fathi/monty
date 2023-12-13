@@ -37,4 +37,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+int read_file(char *fname, stack_t **stack);
+char *parse(char *lineptr);
+
 #endif

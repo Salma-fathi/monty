@@ -1,35 +1,61 @@
 #include "monty.h"
 
 /**
-  * read_file - read monty file line by line, call tokenization function
+  * read_file - read monty file line by line, call parse function
   * send the output op arg to run function.
+  *
   * @fname: pointer to a file name.
+  *
   * Return: sucess code in success else failure code
   */
-int read_file(char *fname)
+int read_file(char *fname, stack_t **stack)
 {
-	/**   1- open a file
-	      2- if fail to open:
-	      3-    return error no. to the main
-	      4- else:
-	      5-     get line by line from a file
-	      6-     send a line to the tokenization function:
-	      7- send op to run function 
-	      8- if success and all run without error return 0 to the main function
-	 **/
+	FILE *monty_f;
+	char *lineptr = NULL, *opcode;
+	size_t n = 0, line_number = 1;
+	instruction_t *operation;
+
+	monty_f = fopen(fname, "r");
+	if (monty_f == NULL)
+	{
+		/* file not exist error */
+		return (EXIT_FAILURE);
+	}
+	while (getline(&lineptr, &n, monty_f) != EOF)
+	{
+		/* check if the line is empty or begin with # */
+		if (strcmp(lineptr, '\n') == 0 || strncmp(lineptr, '#', 1) == 0)
+			continue;
+		opcode = parse(lineptr);
+		if (opcode == NULL)
+		{
+			/* unknown instruction error */
+			return (EXIT_FAILURE);
+		}
+		/* call get_opcode function 
+		    if sucess: call the operation
+		    if not print unknown instruction error
+		 */
+
+		/* increment to next line in monty file */
+		line_number++;		
+	}
+	return (EXIT_SUCCESS);
 }
 /**
-  * get_op - tokenization the line
-  * @line: pointer to pointer to the input line
-  * Return: token to operation
+  * parse - tokenization the line
+  *
+  * @line: pointer to the line
+  *
+  * Return: opcode
   */
-char *get_op(char **line)
+char *parse(char *lineptr)
 {
-	/**
-               tokenization:
-	       1- ignore space
-	       2- ignore any addational input after the
-	       op arg input
-	       3- return a tok to op
-	  **/
+	char *opcode, delm = "\n ";
+
+	opcode = strtok(lineptr, delm);
+	/* return NULL if the opcode = NULL or opcode not alphabetical*/
+	if (opcode == NULL || isalpha(opcode) == 0)
+		return (NULL);
+	return (opcode);
 }
