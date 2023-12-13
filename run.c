@@ -37,6 +37,7 @@
     status = EXIT_FAILURE;
 }
 
+
 /**
  * freeStack - Free the memory allocated for a stack linked list.
  * @stack: Pointer to the stack data structure.
