@@ -56,5 +56,12 @@ void logSuccess(const char *message);
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);
 void freeStack(stack_t *stack);
+/*      functions    */
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, UNUSED unsigned int line_number);
+
+
+
 
 #endif
