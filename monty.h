@@ -8,6 +8,8 @@
 #include <stddef.h>
 #include <string.h>
 #include <errno.h>
+
+#define MAX_LINE_LENGTH 100
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,6 +39,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern char lineptr[MAX_LINE_LENGTH];
+
 /* parsing */
 int read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
@@ -51,6 +55,9 @@ void freeStack(stack_t *stack);
 
 /*handle */
 void exit_error(stack_t *stack);
+
+/* handle argument */
+int is_number(char *arg, stack_t *stack);
 
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);

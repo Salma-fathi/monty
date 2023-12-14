@@ -1,6 +1,5 @@
 #include "monty.h"
 
-#define MAX_LINE_LENGTH 100
 /**
   * read_file - read monty file line by line, call parse function
   * send the output op arg to run function.
@@ -14,8 +13,8 @@
 int read_file(char *filename, stack_t **stack)
 {
 	FILE *monty_f;
-	char lineptr[MAX_LINE_LENGTH];
 	char *opcode;
+	char lineptr[MAX_LINE_LENGTH];
 	unsigned int line_number = 1;
 
 	monty_f = fopen(filename, "r");
