@@ -21,9 +21,6 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 	};
 	if (stack == NULL)
 	{
-		logError(line_cnt, NULL, NULL,
-				"Attempting to use a NULL stack./
-				Check memory allocation or initialization.");
 		exit_error(*stack);
 	}
 	while (op[i].opcode)
@@ -35,7 +32,7 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		}
 		i++;
 	}
-	logError(line_cnt, NULL, NULL, "Unknown instruction");
+	fprintf(stderr, "L%u: unknown instruction %s", line_cnt, str);
 	exit_error(*stack);
 }
 /**
