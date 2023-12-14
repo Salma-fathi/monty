@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		/* monty file error */
-		fprintf(stderr, "USAGE: monty file");
+		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
 	if (read_file(argv[1], &stack) == EXIT_FAILURE)

@@ -5,9 +5,13 @@
   *
   * @arg: argument
   *
+  * @stack: stack
+  *
+  * @line_number: line number
+  *
   * Return: int
   */
-int is_number(char *arg, stack_t *stack)
+int is_number(char *arg, stack_t *stack, unsigned int line_number)
 {
 	int isNum = 1, i, number;
 
@@ -16,6 +20,7 @@ int is_number(char *arg, stack_t *stack)
 		if (!isdigit(arg[i]))
 		{
 			isNum = 0;
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			exit_error(stack);
 		}
 	}

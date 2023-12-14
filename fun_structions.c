@@ -8,7 +8,7 @@
  * Return: Nothing.
  */
 
-void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_item;
 	int number;
@@ -17,11 +17,11 @@ void _push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 	new_item = malloc(sizeof(stack_t));
 	if (!new_item)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit_error(*stack);
 	}
 	arg = strtok(NULL, " \n");
-	number = is_number(arg, *stack);
+	number = is_number(arg, *stack, line_number);
 	new_item->n = number;
 	new_item->next = NULL;
 

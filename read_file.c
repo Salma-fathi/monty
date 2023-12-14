@@ -12,16 +12,16 @@
   */
 int read_file(char *filename, stack_t **stack)
 {
+	char lineptr[MAX_LINE_LENGTH];
 	FILE *monty_f;
 	char *opcode;
-	char lineptr[MAX_LINE_LENGTH];
 	unsigned int line_number = 1;
 
 	monty_f = fopen(filename, "r");
 	if (monty_f == NULL)
 	{
 		/* file not exist error */
-		fprintf(stderr, "Error: Can't open file %s", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	while (fgets(lineptr, sizeof(lineptr), monty_f) != NULL)

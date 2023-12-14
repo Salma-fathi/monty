@@ -39,8 +39,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern char lineptr[MAX_LINE_LENGTH];
-
 /* parsing */
 int read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
@@ -57,7 +55,7 @@ void freeStack(stack_t *stack);
 void exit_error(stack_t *stack);
 
 /* handle argument */
-int is_number(char *arg, stack_t *stack);
+int is_number(char *arg, stack_t *stack, unsigned int line_number);
 
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);
