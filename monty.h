@@ -37,16 +37,24 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* parsing */
 int read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
+
+/* list manuplation */
+size_t print_list(stack_t *head);
+size_t list_len(const stack_t *head);
+stack_t *add_node(stack_t **head, const int n);
+stack_t *add_node_end(stack_t **head, const int n);
+stack_t *get_node_at_index(stack_t *head, unsigned int index);
+
 /*handle */
 void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
-void logError(unsigned int line_cnt, const char *function, const char *file, const char *message)
-void logSuccess(const char *message)
+void logError(unsigned int line_cnt, const char *function, const char *file, const char *message);
+void logSuccess(const char *message);
 
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);
-void freeStack(stack_t *stack)
-
+void freeStack(stack_t *stack);
 
 #endif
