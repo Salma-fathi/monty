@@ -19,6 +19,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit_error(*stack);
+		return;
 	}
 	arg = strtok(NULL, " \n");
 	number = is_number(arg, *stack, line_number);
@@ -55,5 +56,4 @@ void _pall(stack_t **stack, unsigned int line_number)
 		for (;  (*stack); stack = &(*stack)->prev)
 			printf("%d\n",  (*stack)->n);
 	}
-
 }

@@ -19,10 +19,6 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"pall", _pall},
 		{NULL, NULL}
 	};
-	if (stack == NULL)
-	{
-		exit_error(*stack);
-	}
 	while (op[i].opcode)
 	{
 		if (strcmp(op[i].opcode, str) == 0)

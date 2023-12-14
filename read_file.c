@@ -10,7 +10,7 @@
   *
   * Return: sucess code in success else failure code
   */
-int read_file(char *filename, stack_t **stack)
+void read_file(char *filename, stack_t **stack)
 {
 	char lineptr[MAX_LINE_LENGTH];
 	FILE *monty_f;
@@ -37,7 +37,6 @@ int read_file(char *filename, stack_t **stack)
 		line_number++;
 	}
 	fclose(monty_f);
-	return (EXIT_SUCCESS);
 }
 /**
   * parse - tokenization the line
@@ -48,10 +47,9 @@ int read_file(char *filename, stack_t **stack)
   */
 char *parse(char *lineptr)
 {
-	char *opcode, *delm = "\n ";
+	char *opcode;
 
-	opcode = strtok(lineptr, delm);
-	/* return NULL if the opcode = NULL or opcode not alphabetical*/
+	opcode = strtok(lineptr, " \n");
 	if (opcode == NULL)
 		return (NULL);
 	return (opcode);

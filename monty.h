@@ -40,7 +40,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* parsing */
-int read_file(char *fname, stack_t **stack);
+void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 
 /* list manuplation */

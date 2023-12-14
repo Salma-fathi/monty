@@ -15,13 +15,10 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		/* monty file error */
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
-	if (read_file(argv[1], &stack) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	/* free stack */
+	read_file(argv[1], &stack);
 	freeStack(stack);
 
 	return (EXIT_SUCCESS);
