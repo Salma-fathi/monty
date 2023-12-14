@@ -39,6 +39,8 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern FILE *monty_f;
+
 /* parsing */
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
@@ -51,11 +53,11 @@ stack_t *add_node_end(stack_t **head, const int n);
 stack_t *get_node_at_index(stack_t *head, unsigned int index);
 void freeStack(stack_t *stack);
 
-/*handle */
+/*handle error */
 void exit_error(stack_t *stack);
 
 /* handle argument */
-int is_number(char *arg, stack_t *stack, unsigned int line_number);
+int is_number(char *arg, unsigned int line_number);
 
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);

@@ -19,10 +19,14 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit_error(*stack);
-		return;
 	}
 	arg = strtok(NULL, " \n");
-	number = is_number(arg, *stack, line_number);
+	number = is_number(arg, line_number);
+	if (number == EXIT_FAILURE)
+	{
+		free(new_item);
+		exit_error(*stack);
+	}
 	new_item->n = number;
 	new_item->next = NULL;
 
