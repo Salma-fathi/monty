@@ -1,61 +1,4 @@
 #include "monty.h"
-
-/**
- * file_error - Prints the error message on error argc.
- *
- *
- * Return: Nothing.
- */
-
-void fileError(void)
-{
-	fputs("USAGE: monty file\n", stderr);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * open_error - Prints the error message on error open.
- * @filename: Name of the file.
- *
- * Return: Nothing.
- */
-
-void openError(char *filename)
-{
-	fprintf(stderr, "Error: Can't open file %s\n", filename);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * line_error_code - Prints the error message on error with Monty.
- * @line: The line of the current error.
- * @opcode: The code that gives an error.
- *
- * Return: Nothing.
- */
-
-void line_error_code(int *line, char *opcode)
-{
-	char *code = strtok(opcode, DELIMITER);
-
-	fprintf(stderr, "L%i: unknown instruction %s\n", line[1], code);
-	free(line);
-	free(opcode);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * malloc_error - Prints the error message on error mallocating.
- *
- *
- * Return: Nothing.
- */
-
-void malloc_error(void)
-{
-	fputs("Error: malloc failed\n", stderr);
-	exit(EXIT_FAILURE);
-}
 /**
  * error_handler - It manages the error flow.
  * @stack: It's the stack data structure.
@@ -108,4 +51,25 @@ void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 		math_errors(op, opcode, "mod");
 		break;
 	}
+}
+/**
+ * Log an error message.
+ * @line_cnt: Line number.
+ * @message: Error message.
+ */
+void logError(unsigned int line_cnt, const char *function, const char *file, const char *message)
+{
+    if (message != NULL)
+        fprintf(stderr, "L%d: Error in %s (%s) - %s\n", line_cnt, function, file, message);
+    else
+        fprintf(stderr, "L%d: Error in %s (%s) - Unknown error\n", line_cnt, function, file);
+}
+
+/**
+ * Log a success message.
+ * @message: Success message.
+ */
+void logSuccess(const char *message)
+{
+    printf("%s\n", message);
 }

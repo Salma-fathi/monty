@@ -41,12 +41,12 @@ int read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 /*handle */
 void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
-void fileError(void);
-void openError(char *filename);
-void line_error_code(int *line, char *opcode);
-void malloc_error(void);
+void logError(unsigned int line_cnt, const char *function, const char *file, const char *message)
+void logSuccess(const char *message)
+
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);
+void freeStack(stack_t *stack)
 
 
 #endif

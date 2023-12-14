@@ -2,14 +2,10 @@
 #include <stdlib.h>
 #include "monty.h"
 
-/**
- * run - Execute Monty opcodes based on the input string.
- * @stack: Pointer to the stack data structure.
- * @str: Opcode string to compare.
- * @line_cnt: Line number in the Monty script.
- *
- * Return: Nothing.
- */
+
+
+int status = EXIT_SUCCESS;
+
 void run(stack_t **stack, char *str, unsigned int line_cnt)
 {
     int i = 0;
@@ -18,9 +14,15 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
         {"push", push},
         {"pall", pall},
         {"pop", pop},
-        // Add more opcode-function pairs as needed
-        {NULL, NULL} // Terminate the array
+        {NULL, NULL} /* Terminate the array */
     };
+
+    if (stack == NULL)
+    {
+        logError(line_cnt, "Attempting to use a NULL stack. Check memory allocation or initialization.");
+        status = EXIT_FAILURE;
+        return;
+    }
 
     while (op[i].opcode)
     {
@@ -32,17 +34,13 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
         i++;
     }
 
-    fprintf(stderr, "L%d: unknown instruction %s\n", line_cnt, str);
-    status = EXIT_FAILURE; /* not declared */
+    logError(line_cnt, "Unknown instruction");
+    if (status == EXIT_SUCCESS)
+    {
+        logSuccess("Program executed successfully.");
+    }
 }
 
-
-/**
- * freeStack - Free the memory allocated for a stack linked list.
- * @stack: Pointer to the stack data structure.
- *
- * Return: Nothing.
- */
 void freeStack(stack_t *stack)
 {
     stack_t *mirror = stack;
