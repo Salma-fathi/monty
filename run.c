@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "monty.h"
 
 /**
@@ -11,7 +10,7 @@
  *
  * Return: Nothing.
  */
- void run(stack_t **stack, char *str, unsigned int line_cnt)
+void run(stack_t **stack, char *str, unsigned int line_cnt)
 {
     int i = 0;
 
@@ -34,7 +33,7 @@
     }
 
     fprintf(stderr, "L%d: unknown instruction %s\n", line_cnt, str);
-    status = EXIT_FAILURE;
+    status = EXIT_FAILURE; /* not declared */
 }
 
 

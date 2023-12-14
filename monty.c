@@ -16,11 +16,13 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		/* monty file error */
+		fileError();
 		return (EXIT_FAILURE);
 	}
 	if (read_file(argv[1], &stack) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	/** free linked list */
+	/* free stack */
+	freeStack(stack);
 		
 	return (EXIT_SUCCESS);
 }

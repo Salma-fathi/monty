@@ -36,12 +36,10 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void fileError(void)
 
 int read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 /*handle */
-
 void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
 void fileError(void);
 void openError(char *filename);
