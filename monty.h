@@ -19,9 +19,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 /**
  * struct instruction_s - opcode and its function
@@ -33,8 +33,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /* parsing */
@@ -43,25 +43,27 @@ char *parse(char *lineptr);
 
 /* list manuplation */
 size_t print_list(stack_t *head);
-size_t list_len(const stack_t *head);
+size_t list_len(stack_t *head);
 stack_t *add_node(stack_t **head, const int n);
 stack_t *add_node_end(stack_t **head, const int n);
 stack_t *get_node_at_index(stack_t *head, unsigned int index);
+void freeStack(stack_t *stack);
 
 /*handle */
 void error_handler(stack_t **stack, FILE *file, int *op, char *opcode);
-void logError(unsigned int line_cnt, const char *function, const char *file, const char *message);
+void logError(unsigned int line_cnt,
+		const char *function, const char *file, const char *message);
 void logSuccess(const char *message);
+void exit_error(stack_t *stack);
 
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);
-void freeStack(stack_t *stack);
+
 /*      functions    */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
-void _add(stack_t **stack, UNUSED unsigned int line_number);
-
-
-
+void _add(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _sub(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _mul(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 
 #endif

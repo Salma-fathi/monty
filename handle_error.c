@@ -1,5 +1,5 @@
 #include "monty.h"
-/**
+/*
  * error_handler - It manages the error flow.
  * @stack: It's the stack data structure.
  * @file: It's the given file for closing.
@@ -9,7 +9,7 @@
  * Return: Nothing.
  */
 
-void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
+/*void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 {
 	if (op[0] == FILE_ERROR)
 		return;
@@ -51,7 +51,7 @@ void error_handler(stack_t **stack, FILE *file, int *op, char *opcode)
 		math_errors(op, opcode, "mod");
 		break;
 	}
-}
+}*/
 /**
  * Log an error message.
  * @line_cnt: Line number.

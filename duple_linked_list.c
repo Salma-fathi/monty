@@ -24,7 +24,7 @@ size_t print_list(stack_t *head)
   * @head: the head
   * Return: the length
   */
-size_t list_len(const stack_t *head)
+size_t list_len(stack_t *head)
 {
 	size_t size = 0;
 
@@ -68,7 +68,7 @@ stack_t *add_node_end(stack_t **head, const int n)
 {
 	stack_t *tmp, *new;
 
-	new = malloc(sizeof(dlistint_t));
+	new = malloc(sizeof(stack_t));
 	if (!new)
 		return (NULL);
 	new->n = n;
