@@ -55,3 +55,33 @@ void _pall(stack_t **stack, unsigned int line_number)
 	for (;  (*stack); stack = &(*stack)->prev)
 		printf("%d\n",  (*stack)->n);
 }
+/**
+ * _pop - removes the top element of the stack.
+ * @stack: Stack Manager.
+ * @line_number: Data for make push
+ *
+ * Return: Nothing
+ */
+
+void _pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *prev, *next;
+
+	(void) line_number;
+
+	if (*stack)
+	{
+		for (; (*stack)->next; stack = &(*stack)->next)
+			;
+
+		prev = (!(*stack)->prev ? NULL : (*stack)->prev);
+		next = (!(*stack)->next ? NULL : (*stack)->next);
+
+		free(*stack);
+
+		*stack = !next ? NULL : next;
+
+		if (*stack)
+			(*stack)->prev = prev;
+	}
+}
