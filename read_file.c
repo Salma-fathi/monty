@@ -1,6 +1,6 @@
 #include "monty.h"
 
-FILE *monty_f = NULL;
+FILE *monty_f;
 /**
   * read_file - read monty file line by line, call parse function
   * send the output op arg to run function.
