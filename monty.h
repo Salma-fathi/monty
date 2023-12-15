@@ -39,8 +39,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern FILE *monty_f;
-
 /* parsing */
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
