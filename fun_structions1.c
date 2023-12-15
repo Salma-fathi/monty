@@ -8,7 +8,7 @@
  * Return: Nothing.
  */
 
-/*void _add(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void _add(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	if (*stack != NULL)
 	{
@@ -17,7 +17,7 @@
 		(*stack)->n += (*stack)->next->n;
 		_pop(stack, 0);
 	}
-}*/
+}
 
 /**
  * _sub - substract.
@@ -27,7 +27,7 @@
  * Return: Nothing.
  */
 
-/*void _sub(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void _sub(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	if (*stack != NULL)
 	{
@@ -36,7 +36,7 @@
 		(*stack)->n -= (*stack)->next->n;
 		_pop(stack, 0);
 	}
-}*/
+}
 
 /**
  * _mul - multiply.
@@ -46,7 +46,7 @@
  * Return: Nothing.
  */
 
-/*void _mul(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+void _mul(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	if (*stack != NULL)
 	{
@@ -55,4 +55,4 @@
 		(*stack)->n *= (*stack)->next->n;
 		_pop(stack, 0);
 	}
-}*/
+}
