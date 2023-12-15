@@ -59,9 +59,18 @@ int is_number(char *arg, unsigned int line_number);
 
 /* runing */
 void run(stack_t **stack, char *str, unsigned int line_cnt);
+void freeStack(stack_t *stack);
+
 
 /*      functions    */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+/* math */
+void _add(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mod(stack_t **stack, unsigned int line_number);
 
 #endif
