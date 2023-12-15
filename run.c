@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
   * run - run the opcode
   *
@@ -10,7 +11,6 @@
   *
   * Return: nothings
   */
-
 void run(stack_t **stack, char *str, unsigned int line_cnt)
 {
 	int i = 0;
@@ -19,6 +19,8 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"pall", _pall},
 		{NULL, NULL}
 	};
+	if (*stack == NULL)
+		exit(EXIT_FAILURE);
 	while (op[i].opcode)
 	{
 		if (strcmp(op[i].opcode, str) == 0)

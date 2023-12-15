@@ -33,9 +33,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	if (!*stack)
 		new_item->prev = NULL;
 
-	for (; *stack; stack = &(*stack)->next)
-		new_item->prev = *stack;
-
+	else
+	{
+		for (; *stack; stack = &(*stack)->next)
+			new_item->prev = *stack;
+	}
 	*stack = new_item;
 }
 
