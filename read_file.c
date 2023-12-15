@@ -20,7 +20,6 @@ void read_file(char *filename, stack_t **stack)
 	monty_f = fopen(filename, "r");
 	if (monty_f == NULL)
 	{
-		/* file not exist error */
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}

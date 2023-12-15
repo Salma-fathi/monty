@@ -19,7 +19,8 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"pall", _pall},
 		{NULL, NULL}
 	};
-	if (*stack == NULL)
+
+	if (stack == NULL)
 		exit(EXIT_FAILURE);
 	while (op[i].opcode)
 	{
