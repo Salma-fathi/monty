@@ -1,94 +1,97 @@
 #include "monty.h"
+
 /**
- * _add - adds top of stack and second top of stack
+ * _add - sum.
+ * @stack: Stack Manager.
+ * @line_number: Data for make a push.
  *
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * Return: Nothing.
  */
-void _add(stack_t **stack, unsigned int line_number)
+
+void _add(stack_t **stack, UNUSED unsigned int line_number)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack != NULL)
 	{
-		printf("L%d: can't add, stack too short\n", line_number);
-		exit_error(*stack);
+		for (; (*stack)->next->next; stack = &(*stack)->next)
+			;
+		(*stack)->n += (*stack)->next->n;
+		_pop(stack, 0);
 	}
-	(*stack)->next->n += (*stack)->n;
-	_pop(stack, line_number);
 }
 
 /**
- * _sub - subtracts top of stack and second top of stack
+ * _sub - substract.
+ * @stack: Stack Manager.
+ * @line_number: Data for make a push.
  *
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * Return: Nothing.
  */
-void _sub(stack_t **stack, unsigned int line_number)
+
+void _sub(stack_t **stack, UNUSED unsigned int line_number)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack != NULL)
 	{
-		printf("L%d: can't sub, stack too short\n", line_number);
-		exit_error(*stack);
+		for (; (*stack)->next->next; stack = &(*stack)->next)
+			;
+		(*stack)->n -= (*stack)->next->n;
+		_pop(stack, 0);
 	}
-	(*stack)->next->n -= (*stack)->n;
-	_pop(stack, line_number);
 }
 
 /**
- * _mul - multiply top of stack and second top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * _mul - multiply.
+ * @stack: Stack Manager.
+ * @line_number: Data for make a push.
  *
+ * Return: Nothing.
  */
-void _mul(stack_t **stack, unsigned int line_number)
+
+void _mul(stack_t **stack, UNUSED unsigned int line_number)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack != NULL)
 	{
-		printf("L%d: can't mul, stack too short\n", line_number);
-		exit_error(*stack);
+		for (; (*stack)->next->next; stack = &(*stack)->next)
+			;
+		(*stack)->n *= (*stack)->next->n;
+		_pop(stack, 0);
 	}
-	(*stack)->next->n *= (*stack)->n;
-	_pop(stack, line_number);
 }
 
 /**
- * _div - divide top of stack and second top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * _div - division.
+ * @stack: Stack Manager.
+ * @line_number: Data for make a push.
+ *
+ * Return: Nothing.
  */
-void _div(stack_t **stack, unsigned int line_number)
+
+void _div(stack_t **stack, UNUSED unsigned int line_number)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack != NULL)
 	{
-		printf("L%d: can't div, stack too short\n", line_number);
-		exit_error(*stack);
+		for (; (*stack)->next->next; stack = &(*stack)->next)
+			;
+
+		(*stack)->n /= (*stack)->next->n;
+		_pop(stack, 0);
 	}
-	if ((*stack)->n == 0)
-	{
-		printf("L%d: division by zero\n", line_number);
-		exit_error(*stack);
-	}
-	(*stack)->next->n /= (*stack)->n;
-	_pop(stack, line_number);
 }
 
 /**
- * _mod - mod top of stack and second top of stack
- * * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * _mod - module.
+ * @stack: Stack Manager.
+ * @line_number: Data for make a push.
  *
+ * Return: Nothing.
  */
-void _mod(stack_t **stack, unsigned int line_number)
+
+void _mod(stack_t **stack, UNUSED unsigned int line_number)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*stack != NULL)
 	{
-		printf("L%d: can't mod, stack too short\n", line_number);
-		exit_error(*stack);
+		for (; (*stack)->next->next; stack = &(*stack)->next)
+			;
+		(*stack)->n %= (*stack)->next->n;
+		_pop(stack, 0);
 	}
-	if ((*stack)->n == 0)
-	{
-		printf("L%d: division by zero\n", line_number);
-		exit_error(*stack);
-	}
-	(*stack)->next->n %= (*stack)->n;
-	_pop(stack, line_number);
 }
