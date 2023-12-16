@@ -29,6 +29,7 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		}
 		i++;
 	}
+	fprintf(stderr, "L%u: unknown instruction %s\n", line_cnt, str);
 	exit_error(*stack);
 }
 /**
