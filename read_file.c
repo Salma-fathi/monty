@@ -17,7 +17,6 @@ void read_file(char *filename, stack_t **stack)
 	char lineptr[MAX_LINE_LENGTH];
 	char *opcode;
 	unsigned int line_number = 1;
-	int close;
 
 	monty_f = fopen(filename, "r");
 	if (monty_f == NULL)
@@ -36,9 +35,6 @@ void read_file(char *filename, stack_t **stack)
 		run(stack, opcode, line_number);
 		line_number++;
 	}
-	close = fclose(monty_f);
-	if (close == -1)
-		exit(EXIT_FAILURE);
 }
 /**
   * parse - tokenization the line
