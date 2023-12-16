@@ -20,8 +20,6 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{NULL, NULL}
 	};
 
-	if (stack == NULL)
-		exit(EXIT_FAILURE);
 	while (op[i].opcode)
 	{
 		if (strcmp(op[i].opcode, str) == 0)
@@ -31,7 +29,6 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		}
 		i++;
 	}
-	fprintf(stderr, "L%u: unknown instruction %s\n", line_cnt, str);
 	exit_error(*stack);
 }
 /**

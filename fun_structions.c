@@ -22,14 +22,16 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	arg = strtok(NULL, " \n");
 	number = is_number(arg, line_number);
+	if (errno == EXIT_FAILURE)
+	{
+		free(new_item);
+		exit_error(*stack);
+	}
 	new_item->n = number;
 	new_item->next = NULL;
 
-	if (stack == NULL)
-	{
+	if (*stack == NULL)
 		new_item->prev = NULL;
-		printf("num in list: %d\n", (*stack)->n);
-	}
 	else
 	{
 		for (; *stack; stack = &(*stack)->next)
@@ -50,6 +52,8 @@ void _pall(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
 
+	if (*stack == NULL)
+		exit_error(*stack);
 	for (; (*stack)->next; stack = &(*stack)->next)
 		;
 	for (;  (*stack); stack = &(*stack)->prev)
