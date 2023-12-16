@@ -35,6 +35,7 @@ void read_file(char *filename, stack_t **stack)
 		run(stack, opcode, line_number);
 		line_number++;
 	}
+	fclose(monty_f);
 }
 /**
   * parse - tokenization the line
