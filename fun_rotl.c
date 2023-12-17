@@ -1,41 +1,41 @@
 #include "monty.h"
 /**
   *f_rotl- rotates the stack to the top
-  *@head: stack head
+  *@ stack : head
   *@counter: line_number
   *Return: no return
  */
-void f_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter)
+void f_rotl(stack_t **stack,  __attribute__((unused)) unsigned int line_number)
 {
-	stack_t *tmp = *head, *aux;
+	stack_t *tmp = *stack, *aux;
 
-	if (*head == NULL || (*head)->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		return;
 	}
-	aux = (*head)->next;
+	aux = (*stack)->next;
 	aux->prev = NULL;
 	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
 	}
-	tmp->next = *head;
-	(*head)->next = NULL;
-	(*head)->prev = tmp;
-	(*head) = aux;
+	tmp->next = *stack;
+	(*stack)->next = NULL;
+	(*stack)->prev = tmp;
+	(*stack) = aux;
 }
 /**
   *f_rotr- rotates the stack to the bottom
-  *@head: stack head
-  *@counter: line_number
+  *@stack: head
+  *@ line_number
   *Return: no return
  */
-void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter)
+void f_rotr(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *copy;
 
-	copy = *head;
-	if (*head == NULL || (*head)->next == NULL)
+	copy = *stack;
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		return;
 	}
@@ -43,9 +43,9 @@ void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter)
 	{
 		copy = copy->next;
 	}
-	copy->next = *head;
+	copy->next = *stack;
 	copy->prev->next = NULL;
 	copy->prev = NULL;
-	(*head)->prev = copy;
-	(*head) = copy;
+	(*stack)->prev = copy;
+	(*stack) = copy;
 }

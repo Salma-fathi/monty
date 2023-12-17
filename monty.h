@@ -42,16 +42,6 @@ typedef struct instruction_s
 extern FILE *monty_f;
 extern int flag;
 /* parsing */
-
-
-typedef struct bus_s
-{
-    FILE *file;
-    char *content;
-    
-} bus_t;
-int main(int argc, char *argv[]);
-
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 
@@ -89,8 +79,8 @@ void _nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigne
 void _stack(stack_t **stack, __attribute__((unused))unsigned int line_number);
 void _queue(stack_t **stack, __attribute__((unused))unsigned int line_number);
 
-void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
-void f_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter);
+void f_rotr(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void f_rotl(stack_t **stack,  __attribute__((unused)) unsigned int line_number);
 
 
 
