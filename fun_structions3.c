@@ -17,7 +17,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	for (; (*stack)->next; stack = &(*stack)->next)
 		;
 	num = (*stack)->n;
-	if ((num >= 65 && num <= 90) || (num >= 97 && num <= 122))
+	if (isprint(num))
 		printf("%c\n", (char)num);
 	else
 	{
