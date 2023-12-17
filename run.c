@@ -25,6 +25,7 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"nop", _nop},
 		{"div", _div},
 		{"mul", _mul},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
