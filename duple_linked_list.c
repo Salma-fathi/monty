@@ -6,7 +6,7 @@
   * @n: int
   * Return: the address of the new node
   */
-stack_t *add_node(stack_t **head, const int n)
+stack_t *add_node(stack_t **head, int n)
 {
 	stack_t *new, *h;
 
@@ -54,25 +54,6 @@ stack_t *add_node_end(stack_t **head, int n)
 	new_item->prev = tmp;
 	new_item->next = NULL;
 	return (new_item);
-}
-/**
-  * get_node_at_index - get node at the index
-  * @head: head
-  * @index: index of the node
-  * Return: address of the node
-  */
-stack_t *get_node_at_index(stack_t *head, unsigned int index)
-{
-	size_t i = 0;
-
-	while (head && i != index)
-	{
-		head = head->next;
-		i++;
-	}
-	if (!head)
-		return (NULL);
-	return (head);
 }
 /**
   * delete_node - delete a node

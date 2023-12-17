@@ -28,6 +28,8 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"mod", _mod},
 		{"pchar", _pchar},
 		{"pstr", _pstr},
+		{"stack", _stack},
+		{"queue", _queue},
 		{NULL, NULL}
 	};
 

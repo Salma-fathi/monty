@@ -40,14 +40,14 @@ typedef struct instruction_s
 } instruction_t;
 
 extern FILE *monty_f;
+extern int flag;
 /* parsing */
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 
 /* list manuplation */
-stack_t *add_node(stack_t **head, const int n);
-stack_t *add_node_end(stack_t **head, const int n);
-stack_t *get_node_at_index(stack_t *head, unsigned int index);
+stack_t *add_node(stack_t **head, int n);
+stack_t *add_node_end(stack_t **head, int n);
 void delete_node(stack_t **stack);
 void freeStack(stack_t *stack);
 
@@ -76,6 +76,9 @@ void _mod(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
 void _nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigned int line_number);
+void _stack(stack_t **stack, __attribute__((unused))unsigned int line_number);
+void _queue(stack_t **stack, __attribute__((unused))unsigned int line_number);
+
 /* math */
 
 #endif
