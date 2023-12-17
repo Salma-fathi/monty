@@ -42,6 +42,15 @@ typedef struct instruction_s
 extern FILE *monty_f;
 extern int flag;
 /* parsing */
+
+
+typedef struct bus_s
+{
+    FILE *file;
+    char *content;
+    
+} bus_t;
+
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 
