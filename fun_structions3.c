@@ -9,7 +9,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 {
 	int num;
 
-	if ((*stack) == NULL)
+	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		exit_error(*stack);
@@ -19,7 +19,8 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	num = (*stack)->n;
 	if (isprint(num))
 	{
-		printf("%c\n", (char)num);
+		putchar(num);
+		putchar('\n');
 	}
 	else
 	{
