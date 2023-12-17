@@ -36,5 +36,8 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 		exit_error(*stack);
-	print_list(stack);
+	for (; (*stack)->next; stack = &(*stack)->next)
+		;
+	for (;  (*stack); stack = &(*stack)->prev)
+		printf("%d\n",  (*stack)->n);
 }

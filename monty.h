@@ -45,8 +45,6 @@ void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 
 /* list manuplation */
-size_t print_list(stack_t **stack);
-size_t list_len(stack_t *head);
 stack_t *add_node(stack_t **head, const int n);
 stack_t *add_node_end(stack_t **head, const int n);
 stack_t *get_node_at_index(stack_t *head, unsigned int index);

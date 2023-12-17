@@ -1,43 +1,6 @@
 #include "monty.h"
 
 /**
-  * print_list - print the element in the list
-  *
-  * @stack: head
-  *
-  * Return: number of the node
-  */
-size_t print_list(stack_t **stack)
-{
-	size_t size = 0;
-
-	for (; (*stack)->next; stack = &(*stack)->next)
-		;
-	for (;  (*stack); stack = &(*stack)->prev)
-	{
-		printf("%d\n",  (*stack)->n);
-		size += 1;
-	}
-
-	return (size);
-}
-/**
-  * list_len - find the length of the linked list
-  * @head: the head
-  * Return: the length
-  */
-size_t list_len(stack_t *head)
-{
-	size_t size = 0;
-
-	while (head != NULL)
-	{
-		head = head->next;
-		size++;
-	}
-	return (size);
-}
-/**
   * add_node - add new node
   * @head: head
   * @n: int
@@ -68,7 +31,7 @@ stack_t *add_node(stack_t **head, const int n)
   */
 stack_t *add_node_end(stack_t **head, int n)
 {
-	stack_t *new_item;
+	stack_t *new_item, *tmp = *head;
 
 	new_item = malloc(sizeof(stack_t));
 	if (new_item == NULL)
@@ -80,14 +43,17 @@ stack_t *add_node_end(stack_t **head, int n)
 	new_item->next = NULL;
 
 	if (*head == NULL)
-		new_item->prev = NULL;
-	else
 	{
-		for (; *head; head = &(*head)->next)
-			new_item->prev = *head;
+		new_item->prev = NULL;
+		*head = new_item;
+		return (new_item);
 	}
-	*head = new_item;
-	return (*head);
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new_item;
+	new_item->prev = tmp;
+	new_item->next = NULL;
+	return (new_item);
 }
 /**
   * get_node_at_index - get node at the index
