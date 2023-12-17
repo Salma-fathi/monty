@@ -45,12 +45,12 @@ void _pstr(stack_t **stack, unsigned int line_number)
 		exit_error(*stack);
 	for (; (*stack)->next; stack = &(*stack)->next)
 		;
-	for (;  (*stack); stack = &(*stack)->prev)
+	for (; (*stack); stack = &(*stack)->prev)
 	{
 		num = (*stack)->n;
 		if (num == 0 || !isprint(num))
 			break;
-		printf("%c", (char)num);
+		putchar(num);
 	}
 	putchar('\n');
 }
