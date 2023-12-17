@@ -18,6 +18,7 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
+		{"pop", _pop},
 		{NULL, NULL}
 	};
 
