@@ -85,3 +85,16 @@ void _add(stack_t **stack, unsigned int line_number)
 	free(tmp->next);
 	tmp->next = NULL;
 }
+/**
+  * _nop - do nothings 
+  *
+  * @stack: head
+  *
+  * @line_number: line number
+  *
+  * Return: nothings
+  */
+void _nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	;
+}
