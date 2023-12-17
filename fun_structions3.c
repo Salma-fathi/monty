@@ -19,8 +19,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	num = (*stack)->n;
 	if (isprint(num))
 	{
-		putchar(num);
-		putchar('\n');
+		printf("%c\n", (char)num);
 	}
 	else
 	{
