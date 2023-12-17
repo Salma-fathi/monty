@@ -1,69 +1,51 @@
 #include "monty.h"
-
 /**
- * _rotl - rotates the list left
- * @stack: pointer to the top of the stack
- * @line_number: the index of the current line
- *
+  *f_rotl- rotates the stack to the top
+  *@head: stack head
+  *@counter: line_number
+  *Return: no return
  */
-void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void f_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter)
 {
-	stack_t *runner;
-	int temp1, temp2;
+	stack_t *tmp = *head, *aux;
 
-	if (*stack == NULL)
-		return;
-	runner = *stack;
-	while (runner->next)
-		runner = runner->next;
-	while (runner)
+	if (*head == NULL || (*head)->next == NULL)
 	{
-		if (!runner->next)
-		{
-			temp1 = runner->n;
-			runner->n = (*stack)->n;
-		}
-		else
-		{
-			temp2 = runner->n;
-			runner->n = temp1;
-			temp1 = temp2;
-		}
-		runner = runner->prev;
+		return;
 	}
+	aux = (*head)->next;
+	aux->prev = NULL;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = *head;
+	(*head)->next = NULL;
+	(*head)->prev = tmp;
+	(*head) = aux;
 }
 /**
- * _rotr - rotates the list right
- * @stack: pointer to the top of the stack
- * @line_number: the index of the current line
- *
+  *f_rotr- rotates the stack to the bottom
+  *@head: stack head
+  *@counter: line_number
+  *Return: no return
  */
-void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter)
 {
-	stack_t *runner1, *runner2;
-	int temp1, temp2;
+	stack_t *copy;
 
-	if (*stack == NULL)
-		return;
-
-	runner1 = *stack;
-	runner2 = *stack;
-	while (runner1->next)
-		runner1 = runner1->next;
-	while (runner2)
+	copy = *head;
+	if (*head == NULL || (*head)->next == NULL)
 	{
-		if (runner2->prev == NULL)
-		{
-			temp1 = runner2->n;
-			runner2->n = runner1->n;
-		}
-		else
-		{
-			temp2 = runner2->n;
-			runner2->n = temp1;
-			temp1 = temp2;
-		}
-		runner2 = runner2->next;
-
+		return;
 	}
+	while (copy->next)
+	{
+		copy = copy->next;
+	}
+	copy->next = *head;
+	copy->prev->next = NULL;
+	copy->prev = NULL;
+	(*head)->prev = copy;
+	(*head) = copy;
 }
