@@ -9,7 +9,7 @@
 #include <string.h>
 #include <errno.h>
 
-#define MAX_LINE_LENGTH 100
+#define MAX_LINE_LENGTH 200
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,16 +39,16 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern FILE *monty_f;
+extern int flag;
 /* parsing */
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
 
 /* list manuplation */
-size_t print_list(stack_t *head);
-size_t list_len(stack_t *head);
-stack_t *add_node(stack_t **head, const int n);
-stack_t *add_node_end(stack_t **head, const int n);
-stack_t *get_node_at_index(stack_t *head, unsigned int index);
+stack_t *add_node(stack_t **head, int n);
+stack_t *add_node_end(stack_t **head, int n);
+void delete_node(stack_t **stack);
 void freeStack(stack_t *stack);
 
 /*handle error */
@@ -65,12 +65,23 @@ void freeStack(stack_t *stack);
 /*      functions    */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
-/* math */
+void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **stack, unsigned int line_number);
-void _mul(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
+void _pchar(stack_t **stack, unsigned int line_number);
+void _pstr(stack_t **stack, unsigned int line_number);
+void _nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigned int line_number);
+void _stack(stack_t **stack, __attribute__((unused))unsigned int line_number);
+void _queue(stack_t **stack, __attribute__((unused))unsigned int line_number);
+
+/* math */
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+
 
 #endif

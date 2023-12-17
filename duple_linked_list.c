@@ -1,47 +1,12 @@
 #include "monty.h"
 
 /**
-  * print_list - print the element in the list
-  *
-  * @head: head
-  *
-  * Return: number of the node
-  */
-size_t print_list(stack_t *head)
-{
-	size_t size = 0;
-
-	while (head != NULL)
-	{
-		printf("%d\n", head->n);
-		head = head->next;
-		size += 1;
-	}
-	return (size);
-}
-/**
-  * list_len - find the length of the linked list
-  * @head: the head
-  * Return: the length
-  */
-size_t list_len(stack_t *head)
-{
-	size_t size = 0;
-
-	while (head != NULL)
-	{
-		head = head->next;
-		size++;
-	}
-	return (size);
-}
-/**
   * add_node - add new node
   * @head: head
   * @n: int
   * Return: the address of the new node
   */
-stack_t *add_node(stack_t **head, const int n)
+stack_t *add_node(stack_t **head, int n)
 {
 	stack_t *new, *h;
 
@@ -64,48 +29,51 @@ stack_t *add_node(stack_t **head, const int n)
   * @n: value
   * Return: address of new node
   */
-stack_t *add_node_end(stack_t **head, const int n)
+stack_t *add_node_end(stack_t **head, int n)
 {
-	stack_t *tmp, *new;
+	stack_t *new_item, *tmp = *head;
 
-	new = malloc(sizeof(stack_t));
-	if (!new)
-		return (NULL);
-	new->n = n;
-	new->next = NULL;
+	new_item = malloc(sizeof(stack_t));
+	if (new_item == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit_error(*head);
+	}
+	new_item->n = n;
+	new_item->next = NULL;
 
-	/* first node in the list */
 	if (*head == NULL)
 	{
-		new->prev = NULL;
-		*head = new;
+		new_item->prev = NULL;
+		*head = new_item;
+		return (new_item);
 	}
-	else
-	{
-		tmp = *head;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		new->prev = tmp;
-		tmp->next = new;
-	}
-	return (new);
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new_item;
+	new_item->prev = tmp;
+	new_item->next = NULL;
+	return (new_item);
 }
 /**
-  * get_node_at_index - get node at the index
-  * @head: head
-  * @index: index of the node
-  * Return: address of the node
+  * delete_node - delete a node
+  *
+  * @stack: head
+  *
+  * Return: nothing
   */
-stack_t *get_node_at_index(stack_t *head, unsigned int index)
+void delete_node(stack_t **stack)
 {
-	size_t i = 0;
+	stack_t *tmp = *stack;
 
-	while (head && i != index)
+	if ((*stack)->next == NULL)
 	{
-		head = head->next;
-		i++;
+		free(*stack);
+		*stack = NULL;
+		return;
 	}
-	if (!head)
-		return (NULL);
-	return (head);
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	free(tmp->next);
+	tmp->next = NULL;
 }

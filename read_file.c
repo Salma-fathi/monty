@@ -1,5 +1,7 @@
 #include "monty.h"
 
+FILE *monty_f;
+
 /**
   * read_file - read monty file line by line, call parse function
   * send the output op arg to run function.
@@ -15,12 +17,10 @@ void read_file(char *filename, stack_t **stack)
 	char lineptr[MAX_LINE_LENGTH];
 	char *opcode;
 	unsigned int line_number = 1;
-	FILE *monty_f;
 
 	monty_f = fopen(filename, "r");
 	if (monty_f == NULL)
 	{
-		/* file not exist error */
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
@@ -33,7 +33,6 @@ void read_file(char *filename, stack_t **stack)
 			continue;
 		}
 		run(stack, opcode, line_number);
-		/* increment to next line in monty file */
 		line_number++;
 	}
 	fclose(monty_f);
@@ -65,5 +64,6 @@ void exit_error(stack_t *stack)
 {
 	if (stack)
 		freeStack(stack);
+	fclose(monty_f);
 	exit(EXIT_FAILURE);
 }

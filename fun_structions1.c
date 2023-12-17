@@ -1,94 +1,108 @@
 #include "monty.h"
-/**
- * _add - adds top of stack and second top of stack
- *
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- */
-void _add(stack_t **stack, unsigned int line_number)
-{
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		printf("L%d: can't add, stack too short\n", line_number);
-		error_exit(stack);
-	}
-	(*stack)->next->n += (*stack)->n;
-	_pop(stack, line_number);
-}
 
 /**
- * _sub - subtracts top of stack and second top of stack
- *
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- */
+  * _sub - subs the top two elements of the stack.
+  *
+  * @stack: head
+  *
+  * @line_number: line number
+  *
+  * Return: nothings
+  */
 void _sub(stack_t **stack, unsigned int line_number)
 {
+	stack_t *tmp = *stack;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't sub, stack too short\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		exit_error(*stack);
 	}
-	(*stack)->next->n -= (*stack)->n;
-	_pop(stack, line_number);
+	for (; tmp->next->next; tmp = tmp->next)
+		;
+	tmp->n -= tmp->next->n;
+	free(tmp->next);
+	tmp->next = NULL;
 }
-
 /**
- * _mul - multiply top of stack and second top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- *
- */
-void _mul(stack_t **stack, unsigned int line_number)
-{
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		printf("L%d: can't mul, stack too short\n", line_number);
-		error_exit(stack);
-	}
-	(*stack)->next->n *= (*stack)->n;
-	_pop(stack, line_number);
-}
-
-/**
- * _div - divide top of stack and second top of stack
- * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- */
+  * _div - divide the top two elements of the stack.
+  *
+  * @stack: head
+  *
+  * @line_number: line number
+  *
+  * Return: nothings
+  */
 void _div(stack_t **stack, unsigned int line_number)
 {
+	stack_t *tmp = *stack;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't div, stack too short\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+		exit_error(*stack);
 	}
-	if ((*stack)->n == 0)
+	for (; tmp->next->next; tmp = tmp->next)
+		;
+	if (tmp->next->n == 0)
 	{
-		printf("L%d: division by zero\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit_error(*stack);
 	}
-	(*stack)->next->n /= (*stack)->n;
-	_pop(stack, line_number);
+	tmp->n /= tmp->next->n;
+	free(tmp->next);
+	tmp->next = NULL;
 }
-
 /**
- * _mod - mod top of stack and second top of stack
- * * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
- *
- */
+  * _mul - muls the top two elements of the stack.
+  *
+  * @stack: head
+  *
+  * @line_number: line number
+  *
+  * Return: nothings
+  */
+void _mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+		exit_error(*stack);
+	}
+	for (; tmp->next->next; tmp = tmp->next)
+		;
+	tmp->n *= tmp->next->n;
+	free(tmp->next);
+	tmp->next = NULL;
+}
+/**
+  * _mod - mod the top two elements of the stack.
+  *
+  * @stack: head
+  *
+  * @line_number: line number
+  *
+  * Return: nothings
+  */
 void _mod(stack_t **stack, unsigned int line_number)
 {
+	stack_t *tmp = *stack;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't mod, stack too short\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		exit_error(*stack);
 	}
-	if ((*stack)->n == 0)
+	for (; tmp->next->next; tmp = tmp->next)
+		;
+	if (tmp->next->n == 0)
 	{
-		printf("L%d: division by zero\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit_error(*stack);
 	}
-	(*stack)->next->n %= (*stack)->n;
-	_pop(stack, line_number);
+	tmp->n %= tmp->next->n;
+	free(tmp->next);
+	tmp->next = NULL;
 }

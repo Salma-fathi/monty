@@ -19,6 +19,7 @@ int is_number(char *arg, unsigned int line_number)
 		{
 			isNum = 0;
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			errno = EXIT_FAILURE;
 			return (EXIT_FAILURE);
 		}
 	}

@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
   * run - run the opcode
   *
@@ -10,15 +11,28 @@
   *
   * Return: nothings
   */
-
 void run(stack_t **stack, char *str, unsigned int line_cnt)
 {
 	int i = 0;
 	instruction_t op[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
+		{"pop", _pop},
+		{"swap", _swap},
+		{"add", _add},
+		{"sub", _sub},
+		{"nop", _nop},
+		{"div", _div},
+		{"mul", _mul},
+		{"mod", _mod},
+		{"pchar", _pchar},
+		{"pstr", _pstr},
+		{"stack", _stack},
+		{"queue", _queue},
 		{NULL, NULL}
 	};
+
 	while (op[i].opcode)
 	{
 		if (strcmp(op[i].opcode, str) == 0)
