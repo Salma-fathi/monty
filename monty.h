@@ -50,6 +50,7 @@ typedef struct bus_s
     char *content;
     
 } bus_t;
+int main(int argc, char *argv[]);
 
 void read_file(char *fname, stack_t **stack);
 char *parse(char *lineptr);
