@@ -79,9 +79,9 @@ void _nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigne
 void _stack(stack_t **stack, __attribute__((unused))unsigned int line_number);
 void _queue(stack_t **stack, __attribute__((unused))unsigned int line_number);
 
-/* math */
-void rotl(stack_t **stack, unsigned int line_number);
-void rotr(stack_t **stack, unsigned int line_number);
+
+void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
+void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 
 
 #endif

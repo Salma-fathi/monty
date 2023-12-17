@@ -1,57 +1,69 @@
 #include "monty.h"
 
 /**
- * rotl - Rotates the stack to the top.
- * @stack: A pointer to the top of the stack.
- * @line_number: Line number in the Monty bytecodes file.
+ * _rotl - rotates the list left
+ * @stack: pointer to the top of the stack
+ * @line_number: the index of the current line
+ *
  */
-void rotl(stack_t **stack, unsigned int line_number)
+void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-    stack_t *temp, *last;
+	stack_t *runner;
+	int temp1, temp2;
 
-    (void)line_number; 
-
-    if (*stack != NULL && (*stack)->next != NULL)
-    {
-        temp = *stack;
-        last = *stack;
-
-        while (last->next != NULL)
-            last = last->next;
-
-        *stack = (*stack)->next;
-        (*stack)->prev = NULL;
-        last->next = temp;
-        temp->prev = last;
-        temp->next = NULL;
-    }
+	if (*stack == NULL)
+		return;
+	runner = *stack;
+	while (runner->next)
+		runner = runner->next;
+	while (runner)
+	{
+		if (!runner->next)
+		{
+			temp1 = runner->n;
+			runner->n = (*stack)->n;
+		}
+		else
+		{
+			temp2 = runner->n;
+			runner->n = temp1;
+			temp1 = temp2;
+		}
+		runner = runner->prev;
+	}
 }
-
 /**
- * rotr - Rotates the stack to the bottom.
- * @stack: Pointer to the top of the stack.
- * @line_number: Line number in the Monty byte-code file.
+ * _rotr - rotates the list right
+ * @stack: pointer to the top of the stack
+ * @line_number: the index of the current line
+ *
  */
-void rotr(stack_t **stack, unsigned int line_number)
+void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-    stack_t *tmp, *last;
+	stack_t *runner1, *runner2;
+	int temp1, temp2;
 
-    (void)line_number;  // Unused parameter
+	if (*stack == NULL)
+		return;
 
-    if (*stack == NULL || (*stack)->next == NULL)
-        return;
+	runner1 = *stack;
+	runner2 = *stack;
+	while (runner1->next)
+		runner1 = runner1->next;
+	while (runner2)
+	{
+		if (runner2->prev == NULL)
+		{
+			temp1 = runner2->n;
+			runner2->n = runner1->n;
+		}
+		else
+		{
+			temp2 = runner2->n;
+			runner2->n = temp1;
+			temp1 = temp2;
+		}
+		runner2 = runner2->next;
 
-    tmp = *stack;
-    last = *stack;
-
-    // Find the last node in the stack
-    while (last->next != NULL)
-        last = last->next;
-
-    // Update pointers to rotate the stack
-    *stack = last;
-    last->prev->next = NULL;
-    last->prev = NULL;
-    last->next = tmp;
-    tmp->prev = last;
+	}
 }
