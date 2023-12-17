@@ -23,6 +23,7 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 		{"add", _add},
 		{"sub", _sub},
 		{"nop", _nop},
+		{"div", _div},
 		{NULL, NULL}
 	};
 
