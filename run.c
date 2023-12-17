@@ -17,6 +17,7 @@ void run(stack_t **stack, char *str, unsigned int line_cnt)
 	instruction_t op[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 
