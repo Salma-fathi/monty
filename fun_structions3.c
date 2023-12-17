@@ -18,7 +18,10 @@ void _pchar(stack_t **stack, unsigned int line_number)
 		;
 	num = (*stack)->n;
 	if (isprint(num))
-		printf("%c\n", (char)num);
+	{
+		putchar(num);
+		putchar('\n');
+	}
 	else
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range", line_number);
