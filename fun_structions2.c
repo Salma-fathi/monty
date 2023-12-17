@@ -61,3 +61,27 @@ void _swap(stack_t **stack, unsigned int line_number)
 	tmp->n = tmp->prev->n;
 	tmp->prev->n = swap;
 }
+/**
+  * _add - adds the top two elements of the stack.
+  *
+  * @stack: head
+  *
+  * @line_number: line number
+  *
+  * Return: nothings
+  */
+void _add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		exit_error(*stack);
+	}
+	for (; tmp->next->next; tmp = tmp->next)
+		;
+	tmp->n += tmp->next->n;
+	free(tmp->next);
+	tmp->next = NULL;
+}
