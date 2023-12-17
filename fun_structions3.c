@@ -28,3 +28,29 @@ void _pchar(stack_t **stack, unsigned int line_number)
 		exit_error(*stack);
 	}
 }
+/**
+ * _pstr - It prints char the stack.
+ * @stack: Stack Manager.
+ * @line_number: line number
+ *
+ * Return: Nothing.
+ */
+
+void _pstr(stack_t **stack, unsigned int line_number)
+{
+	int num;
+	(void)line_number;
+
+	if (*stack == NULL)
+		exit_error(*stack);
+	for (; (*stack)->next; stack = &(*stack)->next)
+		;
+	for (;  (*stack); stack = &(*stack)->prev)
+	{
+		num = (*stack)->n;
+		if (num == 0 || !isprint(num))
+			break;
+		printf("%c", (char)num);
+	}
+	putchar('\n');
+}

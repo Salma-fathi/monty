@@ -74,6 +74,7 @@ void _div(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
+void _pstr(stack_t **stack, unsigned int line_number);
 void _nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigned int line_number);
 /* math */
 
