@@ -36,3 +36,28 @@ void _pop(stack_t **stack, unsigned int line_number)
 	}
 	delete_node(stack);
 }
+/**
+  * _swap - swap values at the top
+  *
+  * @stack: head
+  *
+  * @line_number: number of lines
+  *
+  * Return: nothings
+  */
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	int swap;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short", line_number);
+		exit_error(*stack);
+	}
+	for (; tmp->next; tmp = tmp->next)
+		;
+	swap = tmp->n;
+	tmp->n = tmp->prev->n;
+	tmp->prev->n = swap;
+}

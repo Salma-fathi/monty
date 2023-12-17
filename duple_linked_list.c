@@ -85,9 +85,14 @@ void delete_node(stack_t **stack)
 {
 	stack_t *tmp = *stack;
 
-	while (tmp->next != NULL)
+	if ((*stack)->next == NULL)
+	{
+		free(*stack);
+		*stack = NULL;
+		return;
+	}
+	while (tmp->next->next != NULL)
 		tmp = tmp->next;
-	if (tmp->prev != NULL)
-		tmp->next->prev = NULL;
 	free(tmp->next);
+	tmp->next = NULL;
 }
