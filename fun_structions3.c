@@ -24,7 +24,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't pchar, value out of range", line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		exit_error(*stack);
 	}
 }
