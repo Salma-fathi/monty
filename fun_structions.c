@@ -19,7 +19,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		exit_error(*stack);
 	}
-	*stack = add_node_end(stack, number);
+	add_node_end(stack, number);
 }
 
 /**
