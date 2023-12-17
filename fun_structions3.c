@@ -11,7 +11,8 @@ void _pchar(stack_t **stack, unsigned int line_number)
 
 	if ((*stack) == NULL)
 	{
-		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+		putchar('\n');
 		exit_error(*stack);
 	}
 	for (; (*stack)->next; stack = &(*stack)->next)
