@@ -64,34 +64,28 @@ stack_t *add_node(stack_t **head, const int n)
   * @n: value
   * Return: address of new node
   */
-stack_t *add_node_end(stack_t **head, const int n)
+stack_t *add_node_end(stack_t **head, int n)
 {
-	stack_t *tmp, *new;
+	stack_t *new_item;
 
-	new = malloc(sizeof(stack_t));
-	if (!new)
+	new_item = malloc(sizeof(stack_t));
+	if (new_item == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit_error(*head);
 	}
-	new->n = n;
-	new->next = NULL;
+	new_item->n = n;
+	new_item->next = NULL;
 
-	/* first node in the list */
 	if (*head == NULL)
-	{
-		new->prev = NULL;
-		*head = new;
-	}
+		new_item->prev = NULL;
 	else
 	{
-		tmp = *head;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		new->prev = tmp;
-		tmp->next = new;
+		for (; *head; head = &(*head)->next)
+			new_item->prev = *head;
 	}
-	return (new);
+	*head = new_item;
+	return (*head);
 }
 /**
   * get_node_at_index - get node at the index
