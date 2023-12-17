@@ -29,19 +29,10 @@ void _pint(stack_t **stack, unsigned int line_number)
   */
 void _pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *prev, *next;
-
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack", line_number);
 		exit_error(*stack);
 	}
-	for (; (*stack)->next; stack = &(*stack)->next)
-		;
-	prev = (!(*stack)->prev ? NULL : (*stack)->prev);
-	next = (!(*stack)->next ? NULL : (*stack)->next);
-	free(*stack);
-	*stack = !next ? NULL : next;
-	if (*stack)
-		(*stack)->prev = prev;
+	delete_node(stack);
 }

@@ -48,6 +48,7 @@ char *parse(char *lineptr);
 stack_t *add_node(stack_t **head, const int n);
 stack_t *add_node_end(stack_t **head, const int n);
 stack_t *get_node_at_index(stack_t *head, unsigned int index);
+void delete_node(stack_t **stack);
 void freeStack(stack_t *stack);
 
 /*handle error */

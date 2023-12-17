@@ -74,3 +74,21 @@ stack_t *get_node_at_index(stack_t *head, unsigned int index)
 		return (NULL);
 	return (head);
 }
+/**
+  * delete_node - delete a node
+  *
+  * @stack: head
+  *
+  * Return: nothing
+  */
+void delete_node(stack_t **stack)
+{
+	stack_t *tmp = *stack;
+
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	if (tmp->prev != NULL)
+		tmp->prev->next = NULL;
+	*stack = tmp->prev;
+	free(tmp);
+}
