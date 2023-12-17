@@ -36,5 +36,5 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 		exit_error(*stack);
-	print_list(*stack);
+	print_list(stack);
 }

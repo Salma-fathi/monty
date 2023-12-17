@@ -3,20 +3,22 @@
 /**
   * print_list - print the element in the list
   *
-  * @head: head
+  * @stack: head
   *
   * Return: number of the node
   */
-size_t print_list(stack_t *head)
+size_t print_list(stack_t **stack)
 {
 	size_t size = 0;
 
-	while (head != NULL)
+	for (; (*stack)->next; stack = &(*stack)->next)
+		;
+	for (;  (*stack); stack = &(*stack)->prev)
 	{
-		printf("%d\n", head->n);
-		head = head->next;
+		printf("%d\n",  (*stack)->n);
 		size += 1;
 	}
+
 	return (size);
 }
 /**
